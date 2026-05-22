@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import os
+from datetime import datetime
 
 
 st.set_page_config(
@@ -29,7 +30,10 @@ if not os.path.exists(CSV_FILE):
         "Article Name",
         "Destination",
         "Week",
-        "Status"
+        "Status",
+        "Highlight",
+        "Date",
+        "Time"
     ])
     df_init.to_csv(CSV_FILE, index=False)
 
@@ -174,6 +178,8 @@ if st.session_state.show_fauzan_input:
 
             df = load_data()
 
+            current_datetime = datetime.now()
+
             new_row = {
                 "Department": "-",
                 "Factory": "-",
@@ -183,7 +189,9 @@ if st.session_state.show_fauzan_input:
                 "Destination": "-",
                 "Week": "-",
                 "Status": "wait",
-                "Highlight": "YES"
+                "Highlight": "YES",
+                "Date": current_datetime.strftime("%Y-%m-%d"),
+                "Time": current_datetime.strftime("%H:%M:%S")
             }
 
             df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
@@ -245,6 +253,8 @@ if submit_button:
 
     df = load_data()
 
+    current_datetime = datetime.now()
+
     new_row = {
         "Department": department,
         "Factory": factory,
@@ -253,7 +263,10 @@ if submit_button:
         "Article Name": article_name,
         "Destination": destination,
         "Week": week,
-        "Status": "wait"
+        "Status": "wait",
+        "Highlight": "NO",
+        "Date": current_datetime.strftime("%Y-%m-%d"),
+        "Time": current_datetime.strftime("%H:%M:%S")
     }
 
     df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
@@ -301,7 +314,7 @@ else:
         
         with st.container(border=False):
 
-            cols = st.columns([1,1,1,1,2,1,1,1,1])
+            cols = st.columns([1,1,1,1,2,1,1,1,1,1,1])
 
             cols[0].write(row["Department"])
             cols[1].write(row["Factory"])
@@ -310,13 +323,15 @@ else:
             cols[4].write(row["Article Name"])
             cols[5].write(row["Destination"])
             cols[6].write(row["Week"])
+            cols[7].write(row["Date"])
+            cols[8].write(row["Time"])
 
             current_status = row["Status"]
 
             # =========================
             # STATUS DROPDOWN
             # =========================
-            selected_status = cols[7].selectbox(
+            selected_status = cols[9].selectbox(
                 "Status",
                 status_options,
                 index=status_options.index(current_status),
@@ -340,7 +355,7 @@ else:
 if f"confirm_delete_{index}" not in st.session_state:
     st.session_state[f"confirm_delete_{index}"] = False
 
-delete_button = cols[8].button(
+delete_button = cols[10].button(
     "Delete",
     key=f"delete_{index}"
 )
