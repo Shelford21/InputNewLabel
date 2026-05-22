@@ -1,0 +1,338 @@
+import streamlit as st
+import pandas as pd
+import os
+
+# =========================
+# PAGE CONFIG
+# =========================
+st.set_page_config(
+    page_title="Input New Label",
+    page_icon="📋",
+    layout="wide"
+)
+
+# =========================
+# LOAD CSS
+# =========================
+def load_css():
+    with open("styles.css") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+load_css()
+
+# =========================
+# CSV FILE
+# =========================
+CSV_FILE = "production_data.csv"
+
+# =========================
+# CREATE CSV IF NOT EXISTS
+# =========================
+if not os.path.exists(CSV_FILE):
+    df_init = pd.DataFrame(columns=[
+        "Department",
+        "Factory",
+        "LINE",
+        "Line Number",
+        "Article Name",
+        "Destination",
+        "Week",
+        "Status"
+    ])
+    df_init.to_csv(CSV_FILE, index=False)
+
+# =========================
+# LOAD DATA
+# =========================
+def load_data():
+    return pd.read_csv(CSV_FILE)
+
+# =========================
+# SAVE DATA
+# =========================
+def save_data(df):
+    df.to_csv(CSV_FILE, index=False)
+
+# =========================
+# DATA
+# =========================
+departments = ["Sewing", "Finishing"]
+
+factories = ["Quty 1", "Quty 2"]
+
+lines = ["A", "B", "C"]
+
+line_numbers = [1,2,3,4,5,6,7,8,9,10]
+
+article_names = [
+"AFTONSPARV SOFT TOY W ASTRONAUT SUIT 28 CAT",
+"ALPTALL CSH 47 PINK/FLOWER-SHAPED",
+"ALPTALL SOFT TOY 27 ASIATIC BLACK BEAR CUB",
+"ALPTALL SOFT TOY 36 RED PANDA",
+"ALPTALL SOFT TOY 52 SNOW LEOPARD/PATTERNED WHITE",
+"ALPTALL SOFT TOY 60 BENGAL TIGER/STRIPED LORANGE",
+"ALPTALL SOFT TOY 9 LONG-EARED JERBOA/BEIGE",
+"ALPTALL SOFT TOY 9 RED PANDA/MINI",
+"BARNDROM CSH 36X45 WHITE/CLOUD-SHAPED",
+"BARNDROM CSH 51X30 YELLOW/TAXI-SHAPED",
+"BARTHOLOMEW BEAR MEDIUM",
+"BLAHAJ N SOFT TOY 55 BABY SHARK",
+"BLAHAJ NNN SOFT TOY 100 SHARK",
+"BLAVINGAD CSH 40X32 PENGUIN-SHAPED BLACK/WHITE",
+"BLAVINGAD SOFT TOY 100 BLUE WHALE",
+"BLAVINGAD SOFT TOY 44 TURTLE/GREEN",
+"CHEESE - LATSAS BASKET",
+"CHILI - ACC DUKTIG PIZZA",
+"DJUNGELSKOG GLOVE PUPPET SNAKE/BURMESE PYTHON",
+"DJUNGELSKOG N SOFT TOY 11 MINI/PANDA",
+"DJUNGELSKOG N SOFT TOY 20 MINI/ORANGUTAN",
+"DJUNGELSKOG SOFT TOY 28 BROWN BEAR",
+"DJUNGELSKOG SOFT TOY BROWN BEAR",
+"DJUNGELSKOG SOFT TOY ORANGUTAN",
+"DJUNGLESKOG SOFT TOY BEAR",
+"DUKTIG ACC CHILI",
+"DUKTIG PIZZA S24 PIZZA/MULTICOLOUR",
+"FAMNIG HJARTA CUSHION 40X101 RED",
+"FISH - ACC DUKTIG PIZZA",
+"GOSIG GOLDEN SOFT TOY 40 DOG/GOLDEN RETRIEVER",
+"GOSIG GOLDEN SOFT TOY 70 DOG/GOLDEN RETRIEVER",
+"GOSIG RATTA SOFT TOY 23 GREY/BEIGE",
+"GREENPAPER - LATSAS BASKET",
+"GREJSIMOJS SOFT TOY 100 BEAR/BEIGE",
+"GREJSIMOJS SOFT TOY 38 BEAR/OFF-WHITE",
+"INNER N CUSH PAD 40X58 WHITE/FIRM ID",
+"INNER N CUSH PAD 50X50 WHITE/FIRM ID",
+"JATTESTOR NNN SOFT TOY ELEPHANT/GREY",
+"KRAMIG SOFT TOY WHITE/BLACK",
+"LATSAS SHOPPING BSKT S12",
+"LIVLIG SOFT TOY 57 DOG/SIBERIAN HUSKY",
+"LIVLIG SOFT TOY HUSKY",
+"MUSHROOM - ACC DUKTIG PIZZA",
+"ONION - ACC DUKTIG PIZZA",
+"PASTA - LATSAS BASKET",
+"PINNEAPLE - ACC DUKTIG PIZZA",
+"PIZZA BREAD - ACC DUKTIG PIZZA",
+"RUCOLLA - ACC DUKTIG PIZZA",
+"SANDL?PARE 45 GIRAFFE CALF/BROWN",
+"SANDL?PARE SOFT TOY 8 MEERKAT/MINI BEIGE",
+"SANDLOPARE 45 GIRAFFE CALF/BROWN",
+"SANDLOPARE SOFT TOY 45 GIRAFFE CALF/BROWN",
+"SANDLOPARE SOFT TOY 8 MEERKAT/MINI BEIGE",
+"SANDLOPARE SOFT TOY 20 MEERKAT/BEIGE",
+"SANDLOPARE SOFT TOY 45 GIRAFFE CALF/BROWN",
+"SANDLOPARE SOFT TOY 70 GIRAFFE/BROWN",
+"SANDLOPARE SOFT TOY 8 MEERKAT/MINI BEIGE",
+"SAUSAGE/SALAMI - ACC DUKTIG PIZZA",
+"SKOGSDUVA CSH 47 FLOWER-SHAPED/WHITE",
+"SKOGSDUVA CSH 47X8 FLOWER-SHAPED/WHITE",
+"SKOGSDUVA CUSHION W POCKET 32X37 ACORN SHPD/BROWN",
+"SKOGSDUVA SOFT TOY 63 LYNX/ORANGE BROWN",
+"SKOGSDUVA STOOL CVR TOADSTOOL SHAPED/RED WHITE",
+"SMASLUG SOFT TOY DOG/BROWN",
+"SNUTTIG SFT TOY 29 POLAR BEAR/WHITE CUB",
+"SNUTTIG SOFT TOY 29 WHITE POLAR BEAR",
+"SNUTTIG SOFT TOY POLAR BEAR/WHITE",
+"TITTA DJUR FINGER PUPPET MIXED COLOURS 10-P",
+"TITTADJUR DEER",
+"TITTADJUR LION",
+"TITTADJUR PANDA",
+"TITTADJUR TURTLE",
+"TOMATO - ACC DUKTIG PIZZA",
+"TREVNAD CSH 50X50 BLUE ID",
+"TREVNAD CSH 50X50 GREEN ID",
+"TREVNAD CSH 50X50 LIGHT BLUE ID",
+"TREVNAD CSH 50X50 YELLOW ID",
+"VINTERFINT 2025 DECO 74 SANTA CLAUS RED",
+"VINTERFINT 2026 DECO 30 SANTA CLAUS RED",
+"VINTERFINT 2026 DECO 30 SANTA CLAUS SITTING/RED",
+"VINTERFINT 2026 DECO 65 SANTA CLAUS BROWN",
+"VINTERFINT 2026 DECO 74 SANTA CLAUS RED"
+]
+
+destinations = ["EU", "AP", "NA", "ME", "GB", "CA", "US"]
+
+status_options = ["wait", "done"]
+
+# =========================
+# TITLE
+# =========================
+st.title("📋 Input New Label")
+
+# =========================
+# FORM
+# =========================
+with st.form("production_form"):
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        department = st.selectbox(
+            "Select Department",
+            departments
+        )
+
+        factory = st.selectbox(
+            "Select Factory",
+            factories
+        )
+
+        line = st.selectbox(
+            "Select LINE",
+            lines
+        )
+
+        line_number = st.selectbox(
+            "Select Line Number",
+            line_numbers
+        )
+
+    with col2:
+        article_name = st.selectbox(
+            "Select Article Name",
+            article_names
+        )
+
+        destination = st.selectbox(
+            "Select Destination",
+            destinations
+        )
+
+        week = st.text_input(
+        "Input Week",
+        placeholder="2552"
+)
+
+    submit_button = st.form_submit_button("Add Data")
+
+# =========================
+# ADD DATA TO CSV
+# =========================
+if submit_button:
+
+    df = load_data()
+
+    new_row = {
+        "Department": department,
+        "Factory": factory,
+        "LINE": line,
+        "Line Number": line_number,
+        "Article Name": article_name,
+        "Destination": destination,
+        "Week": week,
+        "Status": "wait"
+    }
+
+    df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+
+    save_data(df)
+
+    st.success("Data added successfully!")
+
+# =========================
+# LOAD CSV DATA
+# =========================
+df = load_data()
+
+# =========================
+STATUS_PASSWORD = "fauzan"
+
+# =========================
+# SESSION STATE
+# =========================
+if "status_unlocked" not in st.session_state:
+    st.session_state.status_unlocked = False
+
+
+# =========================
+# TABLE DISPLAY
+# =========================
+st.subheader("📄 Submitted Data")
+
+if df.empty:
+    st.info("No data submitted yet.")
+
+else:
+
+    for index, row in df.iterrows():
+
+        with st.container(border=True):
+
+            cols = st.columns([1,1,1,1,2,1,1,1,1])
+
+            cols[0].write(row["Department"])
+            cols[1].write(row["Factory"])
+            cols[2].write(row["LINE"])
+            cols[3].write(row["Line Number"])
+            cols[4].write(row["Article Name"])
+            cols[5].write(row["Destination"])
+            cols[6].write(row["Week"])
+
+            current_status = row["Status"]
+
+            # =========================
+            # STATUS DROPDOWN
+            # =========================
+            selected_status = cols[7].selectbox(
+                "Status",
+                status_options,
+                index=status_options.index(current_status),
+                key=f"status_{index}",
+                label_visibility="collapsed",
+                disabled=not st.session_state.status_unlocked
+            )
+
+            # UPDATE STATUS
+            if (
+                st.session_state.status_unlocked
+                and selected_status != current_status
+            ):
+                df.at[index, "Status"] = selected_status
+                save_data(df)
+                st.rerun()
+
+            # =========================
+            # DELETE BUTTON
+            # =========================
+            delete_button = cols[8].button(
+                "Delete",
+                key=f"delete_{index}"
+            )
+
+            if delete_button:
+                df = df.drop(index=index).reset_index(drop=True)
+                save_data(df)
+                st.rerun()
+
+# =========================
+# DATAFRAME PREVIEW
+# =========================
+st.divider()
+
+st.subheader("📊 CSV Data Preview")
+
+csv_df = pd.read_csv(CSV_FILE)
+
+st.dataframe(
+    csv_df,
+    use_container_width=True
+)
+
+# =========================
+# PASSWORD INPUT
+# =========================
+st.divider()
+st.subheader("🔒 Unlock Status Editing")
+
+password_input = st.text_input(
+    "Enter Password",
+    type="password"
+)
+
+if st.button("Unlock"):
+
+    if password_input == STATUS_PASSWORD:
+        st.session_state.status_unlocked = True
+        st.success("Status editing unlocked!")
+
+    else:
+        st.error("Wrong password!")
