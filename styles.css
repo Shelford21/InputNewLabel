@@ -1,3 +1,33 @@
+/* SELECTBOX TEXT WHITE */
+
+.stSelectbox div[data-baseweb="select"] > div {
+    color: white !important;
+    background-color: #1f2937 !important;
+}
+
+/* DROPDOWN MENU */
+div[role="listbox"] {
+    background-color: #1f2937 !important;
+    color: white !important;
+}
+
+/* DROPDOWN OPTIONS */
+div[role="option"] {
+    color: white !important;
+}
+
+/* INPUT TEXT */
+input {
+    color: white !important;
+}
+
+/* SIDEBAR */
+section[data-testid="stSidebar"] {
+    background-color: #111827;
+}
+
+
+
 section {
     
     /*background-color: #da3434;*/
