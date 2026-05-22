@@ -156,6 +156,7 @@ with top_left_col:
 
         st.session_state.show_fauzan_input = True
 
+st.title("📋 Production Input Form")
 # =========================
 # FAUZAN INPUT
 # =========================
@@ -173,17 +174,17 @@ if st.session_state.show_fauzan_input:
 
             df = load_data()
 
-            new_row = {
-                "Department": "-",
-                "Factory": "-",
-                "LINE": "-",
-                "Line Number": "-",
-                "Article Name": fauzan_text,
-                "Destination": "-",
-                "Week": "-",
-                "Status": "wait",
-                "Highlight": "YES"
-            }
+           new_row = {
+            "Department": department,
+            "Factory": factory,
+            "LINE": line,
+            "Line Number": line_number,
+            "Article Name": article_name,
+            "Destination": destination,
+            "Week": week,
+            "Status": "wait",
+            "Highlight": "NO"
+        }
 
             df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
 
@@ -279,7 +280,26 @@ else:
 
     for index, row in df.iterrows():
 
-        with st.container(border=True):
+        highlighted = str(row.get("Highlight", "NO")) == "YES"
+
+        container_style = """
+        <style>
+        .red-glow {
+            border: 2px solid red;
+            padding: 15px;
+            border-radius: 12px;
+            background-color: rgba(255,0,0,0.08);
+            box-shadow: 0 0 20px red;
+            margin-bottom: 10px;
+        }
+        </style>
+        """
+        
+        if highlighted:
+            st.markdown(container_style, unsafe_allow_html=True)
+            st.markdown('<div class="red-glow">', unsafe_allow_html=True)
+        
+        with st.container(border=False):
 
             cols = st.columns([1,1,1,1,2,1,1,1,1])
 
