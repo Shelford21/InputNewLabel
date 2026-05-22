@@ -481,3 +481,24 @@ if st.button("Unlock"):
 
     else:
         st.error("Wrong password!")
+
+# =========================
+# CLEAR CACHE BUTTON
+# =========================
+st.divider()
+
+st.subheader("⚠️ Clear Cache")
+
+if st.button("Clear Cache"):
+
+    # CLEAR SESSION
+    st.session_state.clear()
+
+    # CLEAR CHAT
+    if os.path.exists(CHAT_FILE):
+        with open(CHAT_FILE, "w") as f:
+            json.dump([], f)
+
+    st.success("Cache cleared!")
+
+    st.rerun()
