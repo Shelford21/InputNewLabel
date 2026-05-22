@@ -261,18 +261,52 @@ else:
                 st.rerun()
 
             # =========================
-            # DELETE BUTTON
-            # =========================
-            delete_button = cols[8].button(
-                "Delete",
-                key=f"delete_{index}"
-            )
+# DELETE BUTTON
+# =========================
+if f"confirm_delete_{index}" not in st.session_state:
+    st.session_state[f"confirm_delete_{index}"] = False
 
-            if delete_button:
-                df = df.drop(index=index).reset_index(drop=True)
-                save_data(df)
-                st.rerun()
+delete_button = cols[8].button(
+    "Delete",
+    key=f"delete_{index}"
+)
 
+# Show confirmation
+if delete_button:
+    st.session_state[f"confirm_delete_{index}"] = True
+
+# Confirmation UI
+if st.session_state[f"confirm_delete_{index}"]:
+
+    st.warning("Are you sure you want to delete this row?")
+
+    confirm_col1, confirm_col2 = st.columns(2)
+
+    with confirm_col1:
+        yes_button = st.button(
+            "Yes",
+            key=f"yes_delete_{index}"
+        )
+
+    with confirm_col2:
+        no_button = st.button(
+            "No",
+            key=f"no_delete_{index}"
+        )
+
+    # YES DELETE
+    if yes_button:
+        df = df.drop(index=index).reset_index(drop=True)
+        save_data(df)
+
+        st.session_state[f"confirm_delete_{index}"] = False
+
+        st.rerun()
+
+    # CANCEL DELETE
+    if no_button:
+        st.session_state[f"confirm_delete_{index}"] = False
+        st.rerun()
 
 st.divider()
 
