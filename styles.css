@@ -1,3 +1,9 @@
+/* MARKDOWN CONTAINER TEXT WHITE */
+
+[data-testid="stMarkdownContainer"] {
+    color: white !important;
+}
+
 /* FORM SUBMIT BUTTON */
 
 div[data-testid="stFormSubmitButton"] > button {
