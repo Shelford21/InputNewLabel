@@ -243,7 +243,7 @@ with st.form("production_form"):
         placeholder="Contoh : 2552"
 )
 
-    submit_button = st.form_submit_button("Add Data")
+    submit_button = st.form_submit_button("Minta Label")
 
 
 if submit_button:
