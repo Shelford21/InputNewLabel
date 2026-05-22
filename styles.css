@@ -1,3 +1,43 @@
+/* FORCE SIDEBAR TOGGLE VISIBLE */
+
+button[kind="header"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    background-color: black !important;
+    color: white !important;
+
+    border-radius: 8px !important;
+    border: 1px solid #444 !important;
+
+    width: 40px !important;
+    height: 40px !important;
+}
+
+/* SIDEBAR NAV AREA */
+[data-testid="stSidebarNav"] {
+    display: block !important;
+}
+
+/* HEADER */
+header {
+    visibility: visible !important;
+}
+
+/* TOOLBAR */
+[data-testid="stToolbar"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* SIDEBAR */
+section[data-testid="stSidebar"] {
+    min-width: 350px !important;
+}
+
+
 /* MARKDOWN CONTAINER TEXT WHITE */
 
 [data-testid="stMarkdownContainer"] {
