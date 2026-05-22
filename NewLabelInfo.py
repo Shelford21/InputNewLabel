@@ -175,15 +175,15 @@ if st.session_state.show_fauzan_input:
             df = load_data()
 
             new_row = {
-            "Department": department,
-            "Factory": factory,
-            "LINE": line,
-            "Line Number": line_number,
-            "Article Name": article_name,
-            "Destination": destination,
-            "Week": week,
-            "Status": "wait",
-            "Highlight": "NO"
+                "Department": "-",
+                "Factory": "-",
+                "LINE": "-",
+                "Line Number": "-",
+                "Article Name": fauzan_text,
+                "Destination": "-",
+                "Week": "-",
+                "Status": "wait",
+                "Highlight": "YES"
             }
 
             df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
