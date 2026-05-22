@@ -84,7 +84,7 @@ st.title("📋 Input New Label")
 # =========================
 if st.session_state.show_chat:
 
-    st.sidebar.title("💬 Anonymous Chat")
+    st.sidebar.title("💬 Group Chat")
 
     chat_messages = load_chat()
 
@@ -109,7 +109,7 @@ if st.session_state.show_chat:
 
     # CHAT INPUT
     chat_input = st.sidebar.text_input(
-        "Message",
+        "Chat ini hanya bisa dilihat oleh fauzan dan para QC Quty 2 (quty 1 otw)",
         key="chat_input"
     )
 
