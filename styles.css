@@ -150,7 +150,7 @@ div[data-testid="stVerticalBlock"]>div>div>button{
     color: rgb(252, 252, 252);
     width: 90%;
     max-width: 14000px;
-    background-color: rgba(0, 0, 0, 0.8); /* 50% transparent black */
+    background-color: rgba(0, 0, 0, 0.5); /* 50% transparent black */
 }
 
 
