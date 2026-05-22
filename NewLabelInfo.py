@@ -5,7 +5,7 @@ import json
 from streamlit_autorefresh import st_autorefresh
 # AUTO REFRESH EVERY 30 SECOND
 st_autorefresh(
-    interval=30 * 1000,
+    interval=5 * 1000,
     key="datarefresh"
 )
 
