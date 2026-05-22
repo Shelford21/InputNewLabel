@@ -228,52 +228,52 @@ if "fauzan_mode" not in st.session_state:
 
 top_left_col, _ = st.columns([1, 5])
 
-with top_left_col:
+# with top_left_col:
 
-    if st.button("Panggil FAUZAN"):
+#     if st.button("Panggil FAUZAN"):
 
-        st.session_state.show_fauzan_input = True
+#         st.session_state.show_fauzan_input = True
 
-# =========================
-# FAUZAN INPUT
-# =========================
-if st.session_state.show_fauzan_input:
+# # =========================
+# # FAUZAN INPUT
+# # =========================
+# if st.session_state.show_fauzan_input:
 
-    with st.form("fauzan_form"):
+#     with st.form("fauzan_form"):
 
-        fauzan_text = st.text_input(
-            "Ketik pesan"
-        )
+#         fauzan_text = st.text_input(
+#             "Ketik pesan"
+#         )
 
-        fauzan_submit = st.form_submit_button("Submit")
+#         fauzan_submit = st.form_submit_button("Submit")
 
-        if fauzan_submit:
+#         if fauzan_submit:
 
-            df = load_data()
+#             df = load_data()
 
             
 
-            new_row = {
-                "Department": "-",
-                "Factory": "-",
-                "LINE": "-",
-                "Line Number": "-",
-                "Article Name": fauzan_text,
-                "Destination": "-",
-                "Week": "-",
-                "Status": "wait",
-                "Highlight": "YES"
-            }
+#             new_row = {
+#                 "Department": "-",
+#                 "Factory": "-",
+#                 "LINE": "-",
+#                 "Line Number": "-",
+#                 "Article Name": fauzan_text,
+#                 "Destination": "-",
+#                 "Week": "-",
+#                 "Status": "wait",
+#                 "Highlight": "YES"
+#             }
 
-            df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+#             df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
 
-            save_data(df)
+#             save_data(df)
 
-            st.success("FAUZAN has been called!")
+#             st.success("FAUZAN has been called!")
 
-            st.session_state.show_fauzan_input = False
+#             st.session_state.show_fauzan_input = False
 
-            st.rerun()
+#             st.rerun()
 
 
 with st.form("production_form"):
