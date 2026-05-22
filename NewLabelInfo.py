@@ -156,7 +156,7 @@ with top_left_col:
 
         st.session_state.show_fauzan_input = True
 
-st.title("📋 Production Input Form")
+st.title("📋 Input New Label")
 # =========================
 # FAUZAN INPUT
 # =========================
