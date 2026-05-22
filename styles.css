@@ -13,12 +13,12 @@ div[role="listbox"] {
 
 /* DROPDOWN OPTIONS */
 div[role="option"] {
-    color: white !important;
+    color: black !important;
 }
 
 /* INPUT TEXT */
 input {
-    color: white !important;
+    color: black !important;
 }
 
 /* SIDEBAR */
