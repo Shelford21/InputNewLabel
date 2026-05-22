@@ -287,7 +287,7 @@ with st.form("production_form"):
         )
 
         factory = st.selectbox(
-            "Pilih Gedungy",
+            "Pilih Gedung",
             factories
         )
 
