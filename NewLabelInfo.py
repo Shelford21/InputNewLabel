@@ -2,8 +2,12 @@ import streamlit as st
 import pandas as pd
 import os
 import json
-
+from streamlit_autorefresh import st_autorefresh
 # AUTO REFRESH EVERY 30 SECOND
+st_autorefresh(
+    interval=30 * 1000,
+    key="datarefresh"
+)
 
 st.set_page_config(
     page_title="Input New Label",
