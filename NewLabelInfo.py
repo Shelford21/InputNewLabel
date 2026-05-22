@@ -148,38 +148,38 @@ with st.form("production_form"):
 
     with col1:
         department = st.selectbox(
-            "Select Department",
+            "Pilih Departemen",
             departments
         )
 
         factory = st.selectbox(
-            "Select Factory",
+            "Pilih Gedungy",
             factories
         )
 
         line = st.selectbox(
-            "Select LINE",
+            "Pilih LINE",
             lines
         )
 
         line_number = st.selectbox(
-            "Select Line Number",
+            "Pilih Nomor Line",
             line_numbers
         )
 
     with col2:
         article_name = st.selectbox(
-            "Select Article Name",
+            "Pilih Nama Artikel",
             article_names
         )
 
         destination = st.selectbox(
-            "Select Destination",
+            "Pilih Destinasi",
             destinations
         )
 
         week = st.text_input(
-        "Input Week",
+        "Ketik Week",
         placeholder="Contoh : 2552"
 )
 
