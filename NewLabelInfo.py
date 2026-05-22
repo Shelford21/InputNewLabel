@@ -485,7 +485,7 @@ if st.button("Unlock"):
 # =========================
 # CLEAR CACHE WITH PASSWORD
 # =========================
-CLEAR_PASSWORD = "fauzan"
+CLEAR_PASSWORD = "fauzann"
 
 st.divider()
 
