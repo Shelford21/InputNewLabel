@@ -17,7 +17,15 @@ def load_css():
 
 load_css()
 
+# =========================
+# SIDEBAR TOGGLE
+# =========================
+if "show_chat" not in st.session_state:
+    st.session_state.show_chat = False
 
+if st.button("Group Chat"):
+    st.session_state.show_chat = not st.session_state.show_chat
+    
 CSV_FILE = "production_data.csv"
 CHAT_FILE = "chat.json"
 
@@ -68,44 +76,47 @@ st.title("📋 Input New Label")
 # =========================
 # SIDEBAR CHAT
 # =========================
-st.sidebar.title("💬 Anonymous Chat")
+if st.session_state.show_chat:
 
-chat_messages = load_chat()
+    st.sidebar.title("💬 Anonymous Chat")
 
-# CHAT DISPLAY
-for msg in chat_messages:
+    chat_messages = load_chat()
 
-    st.sidebar.markdown(
-        f"""
-        <div style="
-            background-color:#f1f1f1;
-            padding:10px;
-            border-radius:10px;
-            margin-bottom:8px;
-        ">
-            <b>anonymous:</b><br>
-            {msg}
-        </div>
-        """,
-        unsafe_allow_html=True
+    # CHAT DISPLAY
+    for msg in chat_messages:
+
+        st.sidebar.markdown(
+            f"""
+            <div style="
+                background-color:#f1f1f1;
+                padding:10px;
+                border-radius:10px;
+                margin-bottom:8px;
+                color:black;
+            ">
+                <b>anonymous:</b><br>
+                {msg}
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    # CHAT INPUT
+    chat_input = st.sidebar.text_input(
+        "Message",
+        key="chat_input"
     )
 
-# CHAT INPUT
-chat_input = st.sidebar.text_input(
-    "Message",
-    key="chat_input"
-)
+    # SEND BUTTON
+    if st.sidebar.button("Send"):
 
-# SEND BUTTON
-if st.sidebar.button("Send"):
+        if chat_input.strip() != "":
 
-    if chat_input.strip() != "":
+            chat_messages.append(chat_input)
 
-        chat_messages.append(chat_input)
+            save_chat(chat_messages)
 
-        save_chat(chat_messages)
-
-        st.rerun()
+            st.rerun()
         
 departments = ["Sewing", "Finishing"]
 
