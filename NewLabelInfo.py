@@ -109,7 +109,7 @@ if st.session_state.show_chat:
 
     # CHAT INPUT
     chat_input = st.sidebar.text_input(
-        "Chat ini hanya bisa dilihat oleh fauzan dan para QC Quty 2 (quty 1 otw)",
+        "Chat khusus qc + fauzan",
         key="chat_input"
     )
 
