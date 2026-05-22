@@ -139,7 +139,61 @@ destinations = ["EU", "AP", "NA", "ME", "GB", "CA", "US"]
 
 status_options = ["wait", "done"]
 
-st.title("📋 Input New Label")
+# =========================
+# SPECIAL BUTTON
+# =========================
+if "show_fauzan_input" not in st.session_state:
+    st.session_state.show_fauzan_input = False
+
+if "fauzan_mode" not in st.session_state:
+    st.session_state.fauzan_mode = False
+
+top_left_col, _ = st.columns([1, 5])
+
+with top_left_col:
+
+    if st.button("Panggil FAUZAN"):
+
+        st.session_state.show_fauzan_input = True
+
+# =========================
+# FAUZAN INPUT
+# =========================
+if st.session_state.show_fauzan_input:
+
+    with st.form("fauzan_form"):
+
+        fauzan_text = st.text_input(
+            "Input Article Name"
+        )
+
+        fauzan_submit = st.form_submit_button("Submit")
+
+        if fauzan_submit:
+
+            df = load_data()
+
+            new_row = {
+                "Department": "-",
+                "Factory": "-",
+                "LINE": "-",
+                "Line Number": "-",
+                "Article Name": fauzan_text,
+                "Destination": "-",
+                "Week": "-",
+                "Status": "wait",
+                "Highlight": "YES"
+            }
+
+            df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+
+            save_data(df)
+
+            st.success("FAUZAN has been called!")
+
+            st.session_state.show_fauzan_input = False
+
+            st.rerun()
 
 
 with st.form("production_form"):
