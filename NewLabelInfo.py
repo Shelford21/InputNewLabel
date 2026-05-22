@@ -249,7 +249,7 @@ if submit_button:
 
     df = load_data()
 
-    current_datetime = datetime.now()
+  
 
     new_row = {
         "Department": department,
@@ -260,9 +260,7 @@ if submit_button:
         "Destination": destination,
         "Week": week,
         "Status": "wait",
-        "Highlight": "NO",
-        "Date": current_datetime.strftime("%Y-%m-%d"),
-        "Time": current_datetime.strftime("%H:%M:%S")
+        "Highlight": "NO"
     }
 
     df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
