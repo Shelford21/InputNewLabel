@@ -63,7 +63,7 @@ div[data-testid="stAppViewContainer"]> section[data-testid="stSidebar"]{
     color: rgb(252, 252, 252);
     width: 90%;
     max-width: 14000px;
-    background-color: rgba(0, 0, 0, 0.3); /* 50% transparent black */
+    background-color: rgba(0, 0, 0, 0.7); /* 50% transparent black */
 }
 
 header[data-testid="stHeader"]{
