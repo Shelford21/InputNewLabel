@@ -273,7 +273,7 @@ if submit_button:
 
 df = load_data()
 
-STATUS_PASSWORD = "fauzan"
+STATUS_PASSWORD = "fauzann"
 
 
 if "status_unlocked" not in st.session_state:
