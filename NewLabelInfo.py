@@ -184,7 +184,7 @@ if st.session_state.show_fauzan_input:
             "Week": week,
             "Status": "wait",
             "Highlight": "NO"
-        }
+            }
 
             df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
 
