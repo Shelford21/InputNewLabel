@@ -174,7 +174,7 @@ if st.session_state.show_fauzan_input:
 
             df = load_data()
 
-           new_row = {
+            new_row = {
             "Department": department,
             "Factory": factory,
             "LINE": line,
