@@ -180,7 +180,7 @@ with st.form("production_form"):
 
         week = st.text_input(
         "Input Week",
-        placeholder="2552"
+        placeholder="Contoh : 2552"
 )
 
     submit_button = st.form_submit_button("Add Data")
