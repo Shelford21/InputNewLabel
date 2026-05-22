@@ -165,7 +165,7 @@ if st.session_state.show_fauzan_input:
     with st.form("fauzan_form"):
 
         fauzan_text = st.text_input(
-            "Input Article Name"
+            "Ketik pesan"
         )
 
         fauzan_submit = st.form_submit_button("Submit")
