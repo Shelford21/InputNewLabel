@@ -1,31 +1,16 @@
-/* SELECTBOX TEXT WHITE */
+/* BUTTON BLACK BACKGROUND */
 
-.stSelectbox div[data-baseweb="select"] > div {
+.stButton > button {
+    background-color: black !important;
     color: white !important;
-    background-color: #1f2937 !important;
+    border: 1px solid #333 !important;
 }
 
-/* DROPDOWN MENU */
-div[role="listbox"] {
-    background-color: #1f2937 !important;
+.stButton > button:hover {
+    background-color: #222 !important;
     color: white !important;
+    border: 1px solid #555 !important;
 }
-
-/* DROPDOWN OPTIONS */
-div[role="option"] {
-    color: black !important;
-}
-
-/* INPUT TEXT */
-input {
-    color: black !important;
-}
-
-/* SIDEBAR */
-section[data-testid="stSidebar"] {
-    background-color: #111827;
-}
-
 
 
 section {
