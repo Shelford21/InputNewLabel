@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import os
-
+import json
 
 
 st.set_page_config(
@@ -19,7 +19,7 @@ load_css()
 
 
 CSV_FILE = "production_data.csv"
-
+CHAT_FILE = "chat.json"
 
 if not os.path.exists(CSV_FILE):
     df_init = pd.DataFrame(columns=[
@@ -35,6 +35,13 @@ if not os.path.exists(CSV_FILE):
     ])
     df_init.to_csv(CSV_FILE, index=False)
 
+# =========================
+# CREATE CHAT FILE
+# =========================
+if not os.path.exists(CHAT_FILE):
+    with open(CHAT_FILE, "w") as f:
+        json.dump([], f)
+
 
 def load_data():
     return pd.read_csv(CSV_FILE)
@@ -42,8 +49,64 @@ def load_data():
 
 def save_data(df):
     df.to_csv(CSV_FILE, index=False)
+# =========================
+# LOAD CHAT
+# =========================
+def load_chat():
+    with open(CHAT_FILE, "r") as f:
+        return json.load(f)
 
+# =========================
+# SAVE CHAT
+# =========================
+def save_chat(chat_data):
+    with open(CHAT_FILE, "w") as f:
+        json.dump(chat_data, f)
+        
+st.title("📋 Input New Label")
 
+# =========================
+# SIDEBAR CHAT
+# =========================
+st.sidebar.title("💬 Anonymous Chat")
+
+chat_messages = load_chat()
+
+# CHAT DISPLAY
+for msg in chat_messages:
+
+    st.sidebar.markdown(
+        f"""
+        <div style="
+            background-color:#f1f1f1;
+            padding:10px;
+            border-radius:10px;
+            margin-bottom:8px;
+        ">
+            <b>anonymous:</b><br>
+            {msg}
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+# CHAT INPUT
+chat_input = st.sidebar.text_input(
+    "Message",
+    key="chat_input"
+)
+
+# SEND BUTTON
+if st.sidebar.button("Send"):
+
+    if chat_input.strip() != "":
+
+        chat_messages.append(chat_input)
+
+        save_chat(chat_messages)
+
+        st.rerun()
+        
 departments = ["Sewing", "Finishing"]
 
 factories = ["Quty 1", "Quty 2"]
