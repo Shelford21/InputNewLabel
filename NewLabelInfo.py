@@ -109,7 +109,7 @@ if st.session_state.show_chat:
     )
 
     # SEND BUTTON
-    if st.sidebar.button("Send"):
+    if st.sidebar.button("Kirim Pesan"):
 
         if chat_input.strip() != "":
 
