@@ -2,32 +2,24 @@ import streamlit as st
 import pandas as pd
 import os
 
-# =========================
-# PAGE CONFIG
-# =========================
+
 st.set_page_config(
     page_title="Input New Label",
     page_icon="📋",
     layout="wide"
 )
 
-# =========================
-# LOAD CSS
-# =========================
+
 def load_css():
     with open("styles.css") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 load_css()
 
-# =========================
-# CSV FILE
-# =========================
+
 CSV_FILE = "production_data.csv"
 
-# =========================
-# CREATE CSV IF NOT EXISTS
-# =========================
+
 if not os.path.exists(CSV_FILE):
     df_init = pd.DataFrame(columns=[
         "Department",
@@ -41,21 +33,15 @@ if not os.path.exists(CSV_FILE):
     ])
     df_init.to_csv(CSV_FILE, index=False)
 
-# =========================
-# LOAD DATA
-# =========================
+
 def load_data():
     return pd.read_csv(CSV_FILE)
 
-# =========================
-# SAVE DATA
-# =========================
+
 def save_data(df):
     df.to_csv(CSV_FILE, index=False)
 
-# =========================
-# DATA
-# =========================
+
 departments = ["Sewing", "Finishing"]
 
 factories = ["Quty 1", "Quty 2"]
@@ -153,14 +139,9 @@ destinations = ["EU", "AP", "NA", "ME", "GB", "CA", "US"]
 
 status_options = ["wait", "done"]
 
-# =========================
-# TITLE
-# =========================
 st.title("📋 Input New Label")
 
-# =========================
-# FORM
-# =========================
+
 with st.form("production_form"):
 
     col1, col2 = st.columns(2)
@@ -204,9 +185,7 @@ with st.form("production_form"):
 
     submit_button = st.form_submit_button("Add Data")
 
-# =========================
-# ADD DATA TO CSV
-# =========================
+
 if submit_button:
 
     df = load_data()
@@ -228,24 +207,15 @@ if submit_button:
 
     st.success("Data added successfully!")
 
-# =========================
-# LOAD CSV DATA
-# =========================
+
 df = load_data()
 
-# =========================
 STATUS_PASSWORD = "fauzan"
 
-# =========================
-# SESSION STATE
-# =========================
+
 if "status_unlocked" not in st.session_state:
     st.session_state.status_unlocked = False
 
-
-# =========================
-# TABLE DISPLAY
-# =========================
 st.subheader("📄 Submitted Data")
 
 if df.empty:
@@ -303,9 +273,7 @@ else:
                 save_data(df)
                 st.rerun()
 
-# =========================
-# DATAFRAME PREVIEW
-# =========================
+
 st.divider()
 
 st.subheader("📊 CSV Data Preview")
@@ -317,9 +285,7 @@ st.dataframe(
     use_container_width=True
 )
 
-# =========================
-# PASSWORD INPUT
-# =========================
+
 st.divider()
 st.subheader("🔒 Unlock Status Editing")
 
