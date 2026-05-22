@@ -483,22 +483,35 @@ if st.button("Unlock"):
         st.error("Wrong password!")
 
 # =========================
-# CLEAR CACHE BUTTON
+# CLEAR CACHE WITH PASSWORD
 # =========================
+CLEAR_PASSWORD = "fauzan"
+
 st.divider()
 
 st.subheader("⚠️ Clear Cache")
 
+clear_password_input = st.text_input(
+    "Enter Clear Cache Password",
+    type="password",
+    key="clear_cache_password"
+)
+
 if st.button("Clear Cache"):
 
-    # CLEAR SESSION
-    st.session_state.clear()
+    if clear_password_input == CLEAR_PASSWORD:
 
-    # CLEAR CHAT
-    if os.path.exists(CHAT_FILE):
-        with open(CHAT_FILE, "w") as f:
-            json.dump([], f)
+        # CLEAR SESSION
+        st.session_state.clear()
 
-    st.success("Cache cleared!")
+        # CLEAR CHAT
+        if os.path.exists(CHAT_FILE):
+            with open(CHAT_FILE, "w") as f:
+                json.dump([], f)
 
-    st.rerun()
+        st.success("Cache cleared!")
+
+        st.rerun()
+
+    else:
+        st.error("Wrong password!")
