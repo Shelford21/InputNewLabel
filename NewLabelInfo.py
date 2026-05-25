@@ -381,7 +381,7 @@ STATUS_PASSWORD = "fauzann"
 if "status_unlocked" not in st.session_state:
     st.session_state.status_unlocked = False
 
-st.subheader("📄 Submitted Data")
+st.subheader("📄 List Minta Label ")
 
 if df.empty:
     st.info("No data submitted yet.")
