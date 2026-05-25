@@ -491,7 +491,7 @@ if st.session_state[f"confirm_delete_{index}"]:
         st.session_state[f"confirm_delete_{index}"] = False
         st.rerun()
 
-st.divider()
+# st.divider()
 
 # st.subheader("📊 CSV Data Preview")
 
@@ -503,7 +503,7 @@ st.divider()
 # )
 
 
-st.divider()
+# st.divider()
 st.subheader("🔒 Unlock Status Editing")
 
 password_input = st.text_input(
