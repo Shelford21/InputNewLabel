@@ -493,14 +493,14 @@ if st.session_state[f"confirm_delete_{index}"]:
 
 st.divider()
 
-st.subheader("📊 CSV Data Preview")
+# st.subheader("📊 CSV Data Preview")
 
-csv_df = pd.read_csv(CSV_FILE)
+# csv_df = pd.read_csv(CSV_FILE)
 
-st.dataframe(
-    csv_df,
-    use_container_width=True
-)
+# st.dataframe(
+#     csv_df,
+#     use_container_width=True
+# )
 
 
 st.divider()
