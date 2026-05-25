@@ -177,8 +177,6 @@ line_options = [
 ]
 
 article_names = [
-Here is the list sorted alphabetically from A to Z, keeping the commas and quotes intact:
-
 "ACORN SHPD/BROWN",
 "BARTHOLOMEW BEAR MEDIUM",
 "BENGAL TIGER/STRIPED LORANGE",
