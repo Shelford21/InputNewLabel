@@ -228,7 +228,7 @@ Here is the list sorted alphabetically from A to Z, keeping the commas and quote
 "VINTERFINT 2026 DECO 30 SANTA CLAUS SITTING/RED",
 "VINTERFINT 2026 DECO 65 SANTA CLAUS BROWN",
 "WHITE/CLOUD-SHAPED",
-"YELLOW/TAXI-SHAPED"
+"YELLOW/TAXI-SHAPED",
     "test"
 ]
 
