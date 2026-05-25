@@ -105,22 +105,32 @@ if st.session_state.show_chat:
             unsafe_allow_html=True
         )
 
+    # =========================
+    # CHAT INPUT DEFAULT
+    # =========================
+    if "chat_input" not in st.session_state:
+        st.session_state.chat_input = ""
+    
+    # =========================
     # CHAT INPUT
+    # =========================
     chat_input = st.sidebar.text_input(
-        "Chat khusus QC + fauzan",
+        "Chat khusus QC + Fauzan",
         key="chat_input"
     )
-
-    # SEND BUTTON
-    if st.sidebar.button("Kirim Pesan"):
-
-        if chat_input.strip() != "":
     
-            chat_messages.append(chat_input)
+    # =========================
+    # SEND BUTTON
+    # =========================
+    if st.sidebar.button("Kirim Pesan"):
+    
+        if st.session_state.chat_input.strip() != "":
+    
+            chat_messages.append(st.session_state.chat_input)
     
             save_chat(chat_messages)
     
-            # RESET INPUT
+            # CLEAR INPUT
             st.session_state.chat_input = ""
     
             st.rerun()
