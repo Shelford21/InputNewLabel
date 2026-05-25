@@ -1,12 +1,11 @@
-/* GREEN CHAT BUTTON */
+/* SIDEBAR SEND BUTTON GREEN */
 
-button[kind="secondary"][key="kirim_pesan_btn"] {
+section[data-testid="stSidebar"] .stButton > button {
     background-color: green !important;
     color: white !important;
-    border: none !important;
 }
 
-button[kind="secondary"][key="kirim_pesan_btn"]:hover {
+section[data-testid="stSidebar"] .stButton > button:hover {
     background-color: #008000 !important;
     color: white !important;
 }
