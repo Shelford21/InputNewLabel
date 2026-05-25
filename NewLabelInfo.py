@@ -123,10 +123,13 @@ if st.session_state.show_chat:
             st.rerun()
         
 department_factory_options = [
-    "Sewing - Quty 1",
-    "Sewing - Quty 2",
+    "Finishing - Quty 2",
     "Finishing - Quty 1",
-    "Finishing - Quty 2"
+    "Sewing - Quty 2",
+    "Sewing - Quty 1"
+    
+    
+    
 ]
 line_options = [
     "A-1",
