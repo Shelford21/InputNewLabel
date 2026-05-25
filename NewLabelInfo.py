@@ -107,12 +107,12 @@ if st.session_state.show_chat:
 
     # CHAT INPUT
     chat_input = st.sidebar.text_input(
-        "Chat khusus qc + fauzan",
+        "Chat khusus QC + fauzan",
         key="chat_input"
     )
 
     # SEND BUTTON
-    if st.sidebar.button("Kirim Pesan"):
+    if st.sidebar.button("Kirim Pesan", key="kirim_pesan_btn"):
 
         if chat_input.strip() != "":
 
