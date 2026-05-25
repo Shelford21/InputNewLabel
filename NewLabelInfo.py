@@ -112,28 +112,25 @@ if st.session_state.show_chat:
         st.session_state.chat_input = ""
     
     # =========================
-    # CHAT INPUT
+    # CHAT FORM
     # =========================
-    chat_input = st.sidebar.text_input(
-        "Chat khusus QC + Fauzan",
-        key="chat_input"
-    )
+    with st.sidebar.form("chat_form", clear_on_submit=True):
     
-    # =========================
-    # SEND BUTTON
-    # =========================
-    if st.sidebar.button("Kirim Pesan"):
+        chat_input = st.text_input(
+            "Chat khusus QC + Fauzan"
+        )
     
-        if st.session_state.chat_input.strip() != "":
+        send_button = st.form_submit_button("Kirim Pesan")
     
-            chat_messages.append(st.session_state.chat_input)
+        if send_button:
     
-            save_chat(chat_messages)
+            if chat_input.strip() != "":
     
-            # CLEAR INPUT
-            #st.session_state.chat_input = ""
+                chat_messages.append(chat_input)
     
-            st.rerun()
+                save_chat(chat_messages)
+    
+                st.rerun()
         
 department_factory_options = [
     "Finishing - Quty 2",
