@@ -112,15 +112,18 @@ if st.session_state.show_chat:
     )
 
     # SEND BUTTON
-    if st.sidebar.button("Kirim Pesan", key="kirim_pesan_btn"):
+    if st.sidebar.button("Kirim Pesan"):
 
-        if chat_input.strip() != "":
+    if chat_input.strip() != "":
 
-            chat_messages.append(chat_input)
+        chat_messages.append(chat_input)
 
-            save_chat(chat_messages)
+        save_chat(chat_messages)
 
-            st.rerun()
+        # RESET INPUT
+        st.session_state.chat_input = ""
+
+        st.rerun()
         
 department_factory_options = [
     "Finishing - Quty 2",
