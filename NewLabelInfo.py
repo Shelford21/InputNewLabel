@@ -318,15 +318,15 @@ with st.form("production_form"):
 
     with col1:
 
-    department_factory = st.selectbox(
-        "Pilih Departemen & Gedung",
-        department_factory_options
-    )
-
-    line_combined = st.selectbox(
-        "Pilih LINE",
-        line_options
-    )
+        department_factory = st.selectbox(
+            "Pilih Departemen & Gedung",
+            department_factory_options
+        )
+    
+        line_combined = st.selectbox(
+            "Pilih LINE",
+            line_options
+        )
 
     with col2:
         article_name = st.selectbox(
