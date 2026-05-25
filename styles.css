@@ -1,3 +1,16 @@
+/* GREEN CHAT BUTTON */
+
+button[kind="secondary"][key="kirim_pesan_btn"] {
+    background-color: green !important;
+    color: white !important;
+    border: none !important;
+}
+
+button[kind="secondary"][key="kirim_pesan_btn"]:hover {
+    background-color: #008000 !important;
+    color: white !important;
+}
+
 /* FORCE SIDEBAR TOGGLE VISIBLE */
 
 button[kind="header"] {
