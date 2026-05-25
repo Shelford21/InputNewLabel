@@ -131,7 +131,7 @@ if st.session_state.show_chat:
             save_chat(chat_messages)
     
             # CLEAR INPUT
-            st.session_state.chat_input = ""
+            #st.session_state.chat_input = ""
     
             st.rerun()
         
