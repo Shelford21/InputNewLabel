@@ -37,10 +37,8 @@ CHAT_FILE = "chat.json"
 
 if not os.path.exists(CSV_FILE):
     df_init = pd.DataFrame(columns=[
-        "Department",
-        "Factory",
+        "Department & Factory",
         "LINE",
-        "Line Number",
         "Article Name",
         "Destination",
         "Week",
@@ -124,13 +122,46 @@ if st.session_state.show_chat:
 
             st.rerun()
         
-departments = ["Sewing", "Finishing"]
+department_factory_options = [
+    "Sewing - Quty 1",
+    "Sewing - Quty 2",
+    "Finishing - Quty 1",
+    "Finishing - Quty 2"
+]
+line_options = [
+    "A-1",
+    "A-2",
+    "A-3",
+    "A-4",
+    "A-5",
+    "A-6",
+    "A-7",
+    "A-8",
+    "A-9",
+    "A-10",
 
-factories = ["Quty 1", "Quty 2"]
+    "B-1",
+    "B-2",
+    "B-3",
+    "B-4",
+    "B-5",
+    "B-6",
+    "B-7",
+    "B-8",
+    "B-9",
+    "B-10",
 
-lines = ["A", "B", "C"]
-
-line_numbers = [1,2,3,4,5,6,7,8,9,10]
+    "C-1",
+    "C-2",
+    "C-3",
+    "C-4",
+    "C-5",
+    "C-6",
+    "C-7",
+    "C-8",
+    "C-9",
+    "C-10",
+]
 
 article_names = [
 "AFTONSPARV SOFT TOY W ASTRONAUT SUIT 28 CAT",
@@ -286,25 +317,16 @@ with st.form("production_form"):
     col1, col2 = st.columns(2)
 
     with col1:
-        department = st.selectbox(
-            "Pilih Departemen",
-            departments
-        )
 
-        factory = st.selectbox(
-            "Pilih Gedung",
-            factories
-        )
+    department_factory = st.selectbox(
+        "Pilih Departemen & Gedung",
+        department_factory_options
+    )
 
-        line = st.selectbox(
-            "Pilih LINE",
-            lines
-        )
-
-        line_number = st.selectbox(
-            "Pilih Nomor Line",
-            line_numbers
-        )
+    line_combined = st.selectbox(
+        "Pilih LINE",
+        line_options
+    )
 
     with col2:
         article_name = st.selectbox(
@@ -332,10 +354,8 @@ if submit_button:
   
 
     new_row = {
-        "Department": department,
-        "Factory": factory,
-        "LINE": line,
-        "Line Number": line_number,
+        "Department & Factory": department_factory,
+        "LINE": line_combined,
         "Article Name": article_name,
         "Destination": destination,
         "Week": week,
@@ -388,15 +408,13 @@ else:
         
         with st.container(border=False):
 
-            cols = st.columns([1,1,1,1,2,1,1,1,1])
+            cols = st.columns([2,1,2,1,1,1,1])
 
-            cols[0].write(row["Department"])
-            cols[1].write(row["Factory"])
-            cols[2].write(row["LINE"])
-            cols[3].write(row["Line Number"])
-            cols[4].write(row["Article Name"])
-            cols[5].write(row["Destination"])
-            cols[6].write(row["Week"])
+            cols[0].write(row["Department & Factory"])
+            cols[1].write(row["LINE"])
+            cols[2].write(row["Article Name"])
+            cols[3].write(row["Destination"])
+            cols[4].write(row["Week"])
             
 
             current_status = row["Status"]
@@ -404,7 +422,7 @@ else:
             # =========================
             # STATUS DROPDOWN
             # =========================
-            selected_status = cols[7].selectbox(
+            selected_status = cols[5].selectbox(
                 "Status",
                 status_options,
                 index=status_options.index(current_status),
@@ -428,7 +446,7 @@ else:
 if f"confirm_delete_{index}" not in st.session_state:
     st.session_state[f"confirm_delete_{index}"] = False
 
-delete_button = cols[8].button(
+delete_button = cols[6].button(
     "Delete",
     key=f"delete_{index}"
 )
