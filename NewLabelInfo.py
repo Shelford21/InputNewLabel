@@ -230,7 +230,7 @@ article_names = [
     "test"
 ]
 
-destinations = ["EU", "AP", "NA", "ME", "GB", "CA", "US"]
+destinations = ["EU", "AP", "NA-", "ME", "GB", "CA", "US"]
 
 status_options = ["wait", "done"]
 
