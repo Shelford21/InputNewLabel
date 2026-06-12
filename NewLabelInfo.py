@@ -47,9 +47,7 @@ if not os.path.exists(CSV_FILE):
     ])
     df_init.to_csv(CSV_FILE, index=False)
 
-# =========================
 # CREATE CHAT FILE
-# =========================
 if not os.path.exists(CHAT_FILE):
     with open(CHAT_FILE, "w") as f:
         json.dump([], f)
@@ -61,9 +59,8 @@ def load_data():
 
 def save_data(df):
     df.to_csv(CSV_FILE, index=False)
-# =========================
-# LOAD CHAT
-# =========================
+
+#load chat
 def load_chat():
     with open(CHAT_FILE, "r") as f:
         return json.load(f)
@@ -83,12 +80,35 @@ st.title("📋 Input New Label")
 if st.session_state.show_chat:
 
     st.sidebar.title("💬 Group Chat")
-
+    # =========================
+    # CHAT IDENTIFIER
+    # =========================
+    chat_department_factory = st.sidebar.selectbox(
+        "Departemen & Gedung",
+        department_factory_options,
+        key="chat_department_factory"
+    )
+    
+    chat_line = st.sidebar.selectbox(
+        "LINE",
+        line_options,
+        key="chat_line"
+    )
     chat_messages = load_chat()
 
     # CHAT DISPLAY
     for msg in chat_messages:
 
+        if isinstance(msg, str):
+    
+            sender = "Unknown"
+            message = msg
+    
+        else:
+    
+            sender = f"{msg['department_factory']} | {msg['line']}"
+            message = msg['message']
+    
         st.sidebar.markdown(
             f"""
             <div style="
@@ -98,13 +118,12 @@ if st.session_state.show_chat:
                 margin-bottom:8px;
                 color:black;
             ">
-                <b>anonymous:</b><br>
-                {msg}
+                <b>{sender}</b><br>
+                {message}
             </div>
             """,
             unsafe_allow_html=True
         )
-
     # =========================
     # CHAT INPUT DEFAULT
     # =========================
@@ -126,7 +145,11 @@ if st.session_state.show_chat:
     
             if chat_input.strip() != "":
     
-                chat_messages.append(chat_input)
+                chat_messages.append({
+                "department_factory": chat_department_factory,
+                "line": chat_line,
+                "message": chat_input
+            })
     
                 save_chat(chat_messages)
     
