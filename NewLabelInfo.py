@@ -110,10 +110,28 @@ for msg in messages:
         unsafe_allow_html=True
     )
 
-messages.append({
-    "line": selected_line,
-    "message": chat_input
-})
+with st.sidebar.form("chat_form", clear_on_submit=True):
+    
+        chat_input = st.text_input(
+            "Chat khusus QC + Fauzan"
+        )
+    
+        send_button = st.form_submit_button("Kirim Pesan")
+    
+        if send_button:
+    
+            if chat_input.strip() != "":
+    
+                messages.append({
+                "line": selected_line,
+                "message": chat_input
+            })
+    
+                save_chat(chat_messages)
+    
+                st.rerun()
+                
+
 
 with open(chat_file, "w") as f:
     json.dump(messages, f)
