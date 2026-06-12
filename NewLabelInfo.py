@@ -84,7 +84,8 @@ if st.session_state.show_chat:
         "Finishing - Quty 2",
         "Finishing - Quty 1",
         "Sewing - Quty 2",
-        "Sewing - Quty 1"
+        "Sewing - Quty 1",
+        "Lean Staff"
     ]
     line_options = [
     "A1",
