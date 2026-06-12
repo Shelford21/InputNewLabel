@@ -38,6 +38,15 @@ group_files = {
 
 chat_file = group_files[selected_group]
 
+# Create file if missing
+if not os.path.exists(chat_file):
+    with open(chat_file, "w") as f:
+        json.dump([], f)
+
+# Load messages
+with open(chat_file, "r") as f:
+    messages = json.load(f)
+    
 line_options = [
     "A1",
     "A2",
@@ -79,10 +88,6 @@ selected_line = st.selectbox(
     key=f"line_{selected_group}"
 )
 
-messages.append({
-    "line": selected_line,
-    "message": chat_input
-})
 
 for msg in messages:
 
@@ -101,6 +106,14 @@ for msg in messages:
         """,
         unsafe_allow_html=True
     )
+
+messages.append({
+    "line": selected_line,
+    "message": chat_input
+})
+
+with open(chat_file, "w") as f:
+    json.dump(messages, f)
     
 st_autorefresh(
     interval=5 * 1000,
