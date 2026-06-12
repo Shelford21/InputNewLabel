@@ -78,7 +78,12 @@ st.title("📋 Input New Label")
 # SIDEBAR CHAT
 # =========================
 if st.session_state.show_chat:
-
+    department_factory_options = [
+        "Finishing - Quty 2",
+        "Finishing - Quty 1",
+        "Sewing - Quty 2",
+        "Sewing - Quty 1"
+    ]
     st.sidebar.title("💬 Group Chat")
     # =========================
     # CHAT IDENTIFIER
@@ -317,12 +322,7 @@ top_left_col, _ = st.columns([1, 5])
 
 
 with st.form("production_form"):
-    department_factory_options = [
-        "Finishing - Quty 2",
-        "Finishing - Quty 1",
-        "Sewing - Quty 2",
-        "Sewing - Quty 1"
-    ]
+    
     col1, col2 = st.columns(2)
 
     with col1:
