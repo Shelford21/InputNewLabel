@@ -122,7 +122,7 @@ if st.session_state.show_chat:
     # =========================
     # CHAT IDENTIFIER
     # =========================
-    chat_department_factory = st.sidebar.selectbox(
+    chat_department_factory = st.sidebar.pills(
         "Departemen & Gedung",
         department_factory_options,
         key="chat_department_factory"
