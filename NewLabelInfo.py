@@ -4,6 +4,69 @@ import os
 import json
 from streamlit_autorefresh import st_autorefresh
 # AUTO REFRESH EVERY 30 SECOND
+
+if st.button("💬 Group Chat"):
+    st.session_state.show_chat_popup = True
+
+if "show_chat_popup" not in st.session_state:
+    st.session_state.show_chat_popup = False
+
+@st.dialog("💬 Group Chat")
+def group_chat_dialog():
+    pass
+
+if st.session_state.show_chat_popup:
+    group_chat_dialog()
+
+selected_group = st.pills(
+    "Select Group",
+    [
+        "Sewing Quty 1",
+        "Sewing Quty 2",
+        "Finishing Quty 1",
+        "Finishing Quty 2"
+    ],
+    default="Sewing Quty 1"
+)
+
+group_files = {
+    "Sewing Quty 1": "chat_sewing_quty1.json",
+    "Sewing Quty 2": "chat_sewing_quty2.json",
+    "Finishing Quty 1": "chat_finishing_quty1.json",
+    "Finishing Quty 2": "chat_finishing_quty2.json",
+}
+
+chat_file = group_files[selected_group]
+
+selected_line = st.selectbox(
+    "Pilih LINE",
+    line_options,
+    key=f"line_{selected_group}"
+)
+
+messages.append({
+    "line": selected_line,
+    "message": chat_input
+})
+
+for msg in messages:
+
+    st.markdown(
+        f"""
+        <div style="
+            padding:10px;
+            border-radius:10px;
+            margin-bottom:5px;
+            background:#f1f1f1;
+            color:black;
+        ">
+            <b>{msg['line']}</b><br>
+            {msg['message']}
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    
 st_autorefresh(
     interval=5 * 1000,
     key="datarefresh"
