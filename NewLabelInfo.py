@@ -119,6 +119,7 @@ if st.session_state.show_chat:
     "C8",
     "C9",
     "C10",
+    "fauzan"
 ]
     st.sidebar.title("💬 Group Chat")
     # =========================
