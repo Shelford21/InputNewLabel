@@ -5,6 +5,9 @@ import json
 from streamlit_autorefresh import st_autorefresh
 # AUTO REFRESH EVERY 30 SECOND
 
+if "chat_input" not in st.session_state:
+    st.session_state.chat_input = ""
+        
 if st.button("💬 Group Chat"):
     st.session_state.show_chat_popup = True
 
@@ -274,11 +277,7 @@ if st.session_state.show_chat:
             """,
             unsafe_allow_html=True
         )
-    # =========================
-    # CHAT INPUT DEFAULT
-    # =========================
-    if "chat_input" not in st.session_state:
-        st.session_state.chat_input = ""
+   
     
     # =========================
     # CHAT FORM
