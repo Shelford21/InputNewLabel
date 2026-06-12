@@ -128,8 +128,7 @@ if st.session_state.show_chat:
         key="chat_department_factory"
     )
     
-    chat_line = st.sidebar.selectbox
-    (
+    chat_line = st.sidebar.selectbox(    
         "LINE",
         line_options,
         key="chat_line"
