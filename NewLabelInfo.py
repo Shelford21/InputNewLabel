@@ -79,10 +79,6 @@ selected_line = st.selectbox(
     key=f"line_{selected_group}"
 )
 
-messages.append({
-    "line": selected_line,
-    "message": chat_input
-})
 
 for msg in messages:
 
