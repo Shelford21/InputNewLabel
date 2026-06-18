@@ -54,14 +54,14 @@ if "user_department_factory" not in st.session_state:
 if "user_line" not in st.session_state:
     st.session_state.user_line = ""
     
-#from streamlit_autorefresh import st_autorefresh
+from streamlit_autorefresh import st_autorefresh
 # AUTO REFRESH EVERY 30 SECOND
 
 
-# st_autorefresh(
-#     interval=5 * 1000,
-#     key="datarefresh"
-# )
+st_autorefresh(
+        interval=5 * 1000,
+        key="datarefresh"
+)
 
 st.set_page_config(
     page_title="Input New Label",
