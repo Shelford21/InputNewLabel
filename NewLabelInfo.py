@@ -439,7 +439,7 @@ top_left_col, _ = st.columns([1, 5])
 
 with st.form("production_form"):
     
-    col1, col2 = st.columns(2)
+    col1, col2,col3 = st.columns(3)
 
     # with col1:
 
@@ -447,7 +447,7 @@ with st.form("production_form"):
     #     line_combined = st.session_state.user_line
     
 
-    with col1:
+    with col2:
         department_factory = st.session_state.user_department_factory
         line_combined = st.session_state.user_line
         
