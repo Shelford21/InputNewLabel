@@ -125,12 +125,12 @@ if not st.session_state.user_registered:
 
     st.title("Identifikasi Pengguna")
 
-    department_factory = st.pills(
+    department_factory = st.selectbox(
         "Pilih Departemen & Gedung",
         department_factory_options
     )
 
-    line_selected = st.pills(
+    line_selected = st.selectbox(
         "Pilih LINE",
         line_options
     )
