@@ -2,14 +2,66 @@ import streamlit as st
 import pandas as pd
 import os
 import json
-from streamlit_autorefresh import st_autorefresh
+department_factory_options = [
+        "Finishing - Quty 2",
+        "Finishing - Quty 1",
+        "Sewing - Quty 2",
+        "Sewing - Quty 1",
+        "Lean Staff"
+    ]
+line_options = [
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+    "A9",
+    "A10",
+
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6",
+    "B7",
+    "B8",
+    "B9",
+    "B10",
+
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C7",
+    "C8",
+    "C9",
+    "C10",
+    "fauzan"
+]
+    
+if "user_registered" not in st.session_state:
+    st.session_state.user_registered = False
+
+if "user_department_factory" not in st.session_state:
+    st.session_state.user_department_factory = ""
+
+if "user_line" not in st.session_state:
+    st.session_state.user_line = ""
+    
+#from streamlit_autorefresh import st_autorefresh
 # AUTO REFRESH EVERY 30 SECOND
 
 
-st_autorefresh(
-    interval=5 * 1000,
-    key="datarefresh"
-)
+# st_autorefresh(
+#     interval=5 * 1000,
+#     key="datarefresh"
+# )
 
 st.set_page_config(
     page_title="Input New Label",
@@ -25,14 +77,7 @@ def load_css():
 
 load_css()
 
-# =========================
-# SIDEBAR TOGGLE
-# =========================
-if "show_chat" not in st.session_state:
-    st.session_state.show_chat = False
 
-if st.button("Group Chat"):
-    st.session_state.show_chat = not st.session_state.show_chat
     
 CSV_FILE = "production_data.csv"
 CHAT_FILE = "chat.json"
@@ -74,8 +119,45 @@ def save_chat(chat_data):
     with open(CHAT_FILE, "w") as f:
         json.dump(chat_data, f)
         
-st.title("📋 Input New Label")
+        
 
+if not st.session_state.user_registered:
+
+    st.title("Identifikasi Pengguna")
+
+    department_factory = st.selectbox(
+        "Pilih Departemen & Gedung",
+        department_factory_options
+    )
+
+    line_selected = st.selectbox(
+        "Pilih LINE",
+        line_options
+    )
+
+    if st.button("Masuk"):
+
+        st.session_state.user_department_factory = department_factory
+        st.session_state.user_line = line_selected
+        st.session_state.user_registered = True
+
+        st.rerun()
+
+    st.stop()
+    
+# =========================
+# SIDEBAR TOGGLE
+# =========================
+if "show_chat" not in st.session_state:
+    st.session_state.show_chat = False
+
+if st.button("Group Chat"):
+    st.session_state.show_chat = not st.session_state.show_chat
+    
+st.title("📋 Input New Label")
+st.success(
+    f"Login sebagai: {st.session_state.user_department_factory} | {st.session_state.user_line}"
+)
 # =========================
 # SIDEBAR CHAT
 # =========================
@@ -122,21 +204,19 @@ if st.session_state.show_chat:
     "C10",
     "fauzan"
 ]
+    if st.button("Ganti Identitas"):
+
+        st.session_state.user_registered = False
+
+        st.rerun()
+    
     st.sidebar.title("💬 Group Chat")
     # =========================
     # CHAT IDENTIFIER
     # =========================
-    chat_department_factory = st.sidebar.selectbox(
-        "Departemen & Gedung",
-        department_factory_options,
-        key="chat_department_factory"
-    )
+    chat_department_factory = st.session_state.user_department_factory
     
-    chat_line = st.sidebar.selectbox(    
-        "LINE",
-        line_options,
-        key="chat_line"
-    )
+    chat_line = st.session_state.user_line
     chat_messages = load_chat()
 
     # CHAT DISPLAY
@@ -186,7 +266,7 @@ if st.session_state.show_chat:
     
                 chat_messages.append({
                 "department_factory": chat_department_factory,
-                "line": chat_line,
+                "line": st.session_state.user_line,
                 "message": chat_input
             })
     
@@ -359,19 +439,16 @@ with st.form("production_form"):
     
     col1, col2 = st.columns(2)
 
-    with col1:
+    # with col1:
 
-        department_factory = st.selectbox(
-            "Pilih Departemen & Gedung",
-            department_factory_options
-        )
+    #     department_factory = st.session_state.user_department_factory
+    #     line_combined = st.session_state.user_line
     
-        line_combined = st.selectbox(
-            "Pilih LINE",
-            line_options
-        )
 
-    with col2:
+    with col1:
+        department_factory = st.session_state.user_department_factory
+        line_combined = st.session_state.user_line
+        
         article_name = st.selectbox(
             "Pilih Nama Artikel",
             article_names
@@ -385,6 +462,7 @@ with st.form("production_form"):
         week = st.text_input(
         "Ketik Week",
         placeholder="Contoh : 2552"
+        
 )
 
     submit_button = st.form_submit_button("Minta Label")
