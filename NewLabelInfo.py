@@ -153,7 +153,13 @@ if "show_chat" not in st.session_state:
 
 if st.button("Group Chat"):
     st.session_state.show_chat = not st.session_state.show_chat
-    
+
+if st.button("Ganti Identitas"):
+
+        st.session_state.user_registered = False
+
+        st.rerun()
+        
 st.title("📋 Input New Label")
 st.success(
     f"Login sebagai: {st.session_state.user_department_factory} | {st.session_state.user_line}"
@@ -204,11 +210,7 @@ if st.session_state.show_chat:
     "C10",
     "fauzan"
 ]
-    if st.button("Ganti Identitas"):
-
-        st.session_state.user_registered = False
-
-        st.rerun()
+    
     
     st.sidebar.title("💬 Group Chat")
     # =========================
