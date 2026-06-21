@@ -201,6 +201,13 @@ if st.button("Group Chat"):
     st.session_state.show_chat = not st.session_state.show_chat
 
 if st.button("Ganti Identitas"):
+        try:
+            del cookies["department_factory"]
+            del cookies["user_line"]
+        except:
+            pass
+
+        cookies.save()
 
         st.session_state.user_registered = False
 
