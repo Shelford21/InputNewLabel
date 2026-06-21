@@ -131,25 +131,43 @@ if not st.session_state.user_registered:
 
     st.title("Identifikasi Pengguna")
 
+    default_department_index = 0
+
+        if saved_department in department_factory_options:
+            default_department_index = department_factory_options.index(
+                saved_department
+            )
+
     department_factory = st.selectbox(
         "Pilih Departemen & Gedung",
         department_factory_options,
-        index=department_factory_options.index(
-        st.session_state.user_department_factory),
+         index=default_department_index,
         filter_mode=None 
     )
 
+        default_line_index = 0
+
+if saved_line in line_options:
+    default_line_index = line_options.index(
+        saved_line
+    )
     line_selected = st.selectbox(
         "Pilih LINE",
         line_options,
-        index=line_options.index(
-        st.session_state.user_line
-            ),
+         index=default_line_index,
         filter_mode=None 
     )
 
     if st.button("Masuk"):
-
+        localS.setItem(
+            "department_factory",
+            department_factory
+        )
+        
+        localS.setItem(
+            "user_line",
+            line_selected
+        )
         st.session_state.user_department_factory = department_factory
         st.session_state.user_line = line_selected
         st.session_state.user_registered = True
