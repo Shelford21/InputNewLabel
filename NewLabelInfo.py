@@ -311,7 +311,7 @@ if st.session_state.show_chat:
     with st.sidebar.form("chat_form", clear_on_submit=True):
     
         chat_input = st.text_input(
-            "Chat khusus QC + Fauzan"
+            "Chat khusus QC + Adm + Fauzan"
         )
     
         send_button = st.form_submit_button("Kirim Pesan")
