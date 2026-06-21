@@ -145,7 +145,7 @@ if not st.session_state.user_registered:
         filter_mode=None 
     )
 
-        default_line_index = 0
+    default_line_index = 0
 
     if saved_line in line_options:
         default_line_index = line_options.index(
