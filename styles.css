@@ -191,7 +191,8 @@ div[data-testid="stVerticalBlock"]>div>div>button{
 }
 
 .stAppViewContainer  {
-    background: url("https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?q=80&w=2093&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+	background-color: #FFFFFF;
+    /* background: url("https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?q=80&w=2093&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); */
     /*background: linear-gradient(30deg, #000000 0%, #3b3b3b 62%);*/
     background-size: cover;
     background-position:center;
@@ -200,6 +201,7 @@ div[data-testid="stVerticalBlock"]>div>div>button{
     height: 100%;
     width: 100%;
     padding-top : 0px;
+	
     
     }
 
