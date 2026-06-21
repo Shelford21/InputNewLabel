@@ -692,7 +692,7 @@ if st.button("🔧 Fitur Admin"):
         not st.session_state.show_admin_login
     )
     
-ADMIN_PASSWORD = "fauzan"
+ADMIN_PASSWORD = "1945"
 
 if st.session_state.show_admin_login:
 
@@ -737,7 +737,7 @@ if st.session_state.admin_unlocked:
 
     if st.button("Clear Cache"):
 
-        if clear_password_input == ADMIN_PASSWORD:
+        # if clear_password_input == ADMIN_PASSWORD:
 
             st.session_state.clear()
 
@@ -749,6 +749,6 @@ if st.session_state.admin_unlocked:
 
             st.rerun()
 
-        else:
+        # else:
 
             st.error("Wrong password!")
