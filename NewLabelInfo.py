@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 import os
 import json
+from streamlit_local_storage import LocalStorage
+localS = LocalStorage()
+
 
 department_factory_options = [
         "Finishing - Quty 2",
@@ -58,6 +61,8 @@ if "user_line" not in st.session_state:
 from streamlit_autorefresh import st_autorefresh
 # AUTO REFRESH EVERY 30 SECOND
 
+saved_department = localS.getItem("department_factory")
+saved_line = localS.getItem("user_line")
 
 st_autorefresh(
         interval=5 * 1000,
