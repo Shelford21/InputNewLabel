@@ -127,12 +127,14 @@ if not st.session_state.user_registered:
 
     department_factory = st.selectbox(
         "Pilih Departemen & Gedung",
-        department_factory_options
+        department_factory_options,
+        filter_mode=None 
     )
 
     line_selected = st.selectbox(
         "Pilih LINE",
-        line_options
+        line_options,
+        filter_mode=None 
     )
 
     if st.button("Masuk"):
