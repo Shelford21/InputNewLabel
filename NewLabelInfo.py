@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 import json
+
 department_factory_options = [
         "Finishing - Quty 2",
         "Finishing - Quty 1",
@@ -49,10 +50,10 @@ if "user_registered" not in st.session_state:
     st.session_state.user_registered = False
 
 if "user_department_factory" not in st.session_state:
-    st.session_state.user_department_factory = ""
+    st.session_state.user_department_factory = department_factory_options[0]
 
 if "user_line" not in st.session_state:
-    st.session_state.user_line = ""
+    st.session_state.user_line = line_options[0]
     
 from streamlit_autorefresh import st_autorefresh
 # AUTO REFRESH EVERY 30 SECOND
@@ -128,12 +129,17 @@ if not st.session_state.user_registered:
     department_factory = st.selectbox(
         "Pilih Departemen & Gedung",
         department_factory_options,
+        index=department_factory_options.index(
+        st.session_state.user_department_factory),
         filter_mode=None 
     )
 
     line_selected = st.selectbox(
         "Pilih LINE",
         line_options,
+        index=line_options.index(
+        st.session_state.user_line
+            ),
         filter_mode=None 
     )
 
