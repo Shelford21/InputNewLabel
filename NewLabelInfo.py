@@ -133,7 +133,7 @@ if not st.session_state.user_registered:
 
     default_department_index = 0
 
-        if saved_department in department_factory_options:
+    if saved_department in department_factory_options:
             default_department_index = department_factory_options.index(
                 saved_department
             )
@@ -147,8 +147,8 @@ if not st.session_state.user_registered:
 
         default_line_index = 0
 
-if saved_line in line_options:
-    default_line_index = line_options.index(
+    if saved_line in line_options:
+        default_line_index = line_options.index(
         saved_line
     )
     line_selected = st.selectbox(
