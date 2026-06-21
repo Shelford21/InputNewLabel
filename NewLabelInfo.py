@@ -201,17 +201,16 @@ if st.button("Group Chat"):
     st.session_state.show_chat = not st.session_state.show_chat
 
 if st.button("Ganti Identitas"):
-        try:
-            del cookies["department_factory"]
-            del cookies["user_line"]
-        except:
-            pass
-
-        cookies.save()
-        st.session_state.clear()
-        st.session_state.user_registered = False
-
-        st.rerun()
+            cookies["department_factory"] = ""
+            cookies["user_line"] = ""
+        
+            cookies.save()
+        
+            st.session_state.user_registered = False
+            st.session_state.user_department_factory = ""
+            st.session_state.user_line = ""
+        
+            st.rerun()
         
 st.title("📋 Input New Label")
 st.success(
