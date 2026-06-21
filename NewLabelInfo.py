@@ -4,6 +4,15 @@ import os
 import json
 from streamlit_local_storage import LocalStorage
 localS = LocalStorage()
+from streamlit_cookies_manager import EncryptedCookieManager
+
+cookies = EncryptedCookieManager(
+    prefix="labelapp_",
+    password="fauzann"
+)
+
+if not cookies.ready():
+    st.stop()
 
 
 department_factory_options = [
@@ -126,13 +135,24 @@ def save_chat(chat_data):
         json.dump(chat_data, f)
         
         
+saved_department = cookies.get("department_factory")
+saved_line = cookies.get("user_line")
+if (
+    saved_department in department_factory_options
+    and
+    saved_line in line_options
+):
+
+    st.session_state.user_department_factory = saved_department
+    st.session_state.user_line = saved_line
+    st.session_state.user_registered = True
 
 if not st.session_state.user_registered:
 
     st.title("Identifikasi Pengguna")
 
     default_department_index = 0
-
+        
     if saved_department in department_factory_options:
             default_department_index = department_factory_options.index(
                 saved_department
@@ -149,8 +169,9 @@ if not st.session_state.user_registered:
 
     if saved_line in line_options:
         default_line_index = line_options.index(
-        saved_line
+            saved_line
     )
+
     line_selected = st.selectbox(
         "Pilih LINE",
         line_options,
@@ -159,15 +180,9 @@ if not st.session_state.user_registered:
     )
 
     if st.button("Masuk"):
-        localS.setItem(
-            "department_factory",
-            department_factory
-        )
-        
-        localS.setItem(
-            "user_line",
-            line_selected
-        )
+        cookies["department_factory"] = department_factory
+        cookies["user_line"] = line_selected
+        cookies.save()
         st.session_state.user_department_factory = department_factory
         st.session_state.user_line = line_selected
         st.session_state.user_registered = True
