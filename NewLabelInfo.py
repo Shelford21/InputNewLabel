@@ -14,7 +14,9 @@ cookies = EncryptedCookieManager(
 if not cookies.ready():
     st.stop()
 
-
+if "admin_unlocked" not in st.session_state:
+    st.session_state.admin_unlocked = False
+    
 department_factory_options = [
         "Finishing - Quty 2",
         "Finishing - Quty 1",
@@ -679,52 +681,74 @@ if st.session_state[f"confirm_delete_{index}"]:
 
 
 # st.divider()
-st.subheader("🔒 Unlock Status Editing")
-
-password_input = st.text_input(
-    "Enter Password",
-    type="password"
-)
-
-if st.button("Unlock"):
-
-    if password_input == STATUS_PASSWORD:
-        st.session_state.status_unlocked = True
-        st.success("Status editing unlocked!")
-
-    else:
-        st.error("Wrong password!")
-
-# =========================
-# CLEAR CACHE WITH PASSWORD
-# =========================
-CLEAR_PASSWORD = "fauzann"
-
 st.divider()
 
-st.subheader("⚠️ Clear Cache")
+if "show_admin_login" not in st.session_state:
+    st.session_state.show_admin_login = False
 
-clear_password_input = st.text_input(
-    "Enter Clear Cache Password",
-    type="password",
-    key="clear_cache_password"
-)
+if st.button("🔧 Fitur Admin"):
 
-if st.button("Clear Cache"):
+    st.session_state.show_admin_login = (
+        not st.session_state.show_admin_login
+    )
+    
+ADMIN_PASSWORD = "fauzan"
 
-    if clear_password_input == CLEAR_PASSWORD:
+if st.session_state.show_admin_login:
 
-        # CLEAR SESSION
-        st.session_state.clear()
+    admin_password = st.text_input(
+        "Password Admin",
+        type="password"
+    )
 
-        # CLEAR CHAT
-        if os.path.exists(CHAT_FILE):
-            with open(CHAT_FILE, "w") as f:
-                json.dump([], f)
+    if st.button("Login Admin"):
 
-        st.success("Cache cleared!")
+        if admin_password == ADMIN_PASSWORD:
 
-        st.rerun()
+            st.session_state.admin_unlocked = True
 
-    else:
-        st.error("Wrong password!")
+            st.success("Admin mode unlocked!")
+
+        else:
+
+            st.error("Wrong password!")
+            
+if st.session_state.admin_unlocked:
+
+    st.divider()
+
+    st.subheader("🔒 Status Editing")
+
+    if st.button("Unlock Status Editing"):
+
+        st.session_state.status_unlocked = True
+
+        st.success("Status editing unlocked!")
+
+    st.divider()
+
+    st.subheader("⚠️ Clear Cache")
+
+    clear_password_input = st.text_input(
+        "Enter Clear Cache Password",
+        type="password",
+        key="clear_cache_password"
+    )
+
+    if st.button("Clear Cache"):
+
+        if clear_password_input == ADMIN_PASSWORD:
+
+            st.session_state.clear()
+
+            if os.path.exists(CHAT_FILE):
+                with open(CHAT_FILE, "w") as f:
+                    json.dump([], f)
+
+            st.success("Cache cleared!")
+
+            st.rerun()
+
+        else:
+
+            st.error("Wrong password!")
