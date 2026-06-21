@@ -208,7 +208,7 @@ if st.button("Ganti Identitas"):
             pass
 
         cookies.save()
-
+        st.session_state.clear()
         st.session_state.user_registered = False
 
         st.rerun()
