@@ -455,12 +455,14 @@ with st.form("production_form"):
         
         article_name = st.selectbox(
             "Pilih Nama Artikel",
-            article_names
+            article_names,
+                filter_mode=None
         )
 
         destination = st.selectbox(
             "Pilih Destinasi",
-            destinations
+            destinations,
+                filter_mode=None
         )
 
         week = st.text_input(
@@ -553,7 +555,8 @@ else:
                 index=status_options.index(current_status),
                 key=f"status_{index}",
                 label_visibility="collapsed",
-                disabled=not st.session_state.status_unlocked
+                disabled=not st.session_state.status_unlocked,
+                    filter_mode=None
             )
 
             # UPDATE STATUS
