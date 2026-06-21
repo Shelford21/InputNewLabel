@@ -729,11 +729,11 @@ if st.session_state.admin_unlocked:
 
     st.subheader("⚠️ Clear Cache")
 
-    clear_password_input = st.text_input(
-        "Enter Clear Cache Password",
-        type="password",
-        key="clear_cache_password"
-    )
+    # clear_password_input = st.text_input(
+    #     "Enter Clear Cache Password",
+    #     type="password",
+    #     key="clear_cache_password"
+    # )
 
     if st.button("Clear Cache"):
 
