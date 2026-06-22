@@ -733,7 +733,7 @@ if st.session_state.admin_unlocked:
 
     st.divider()
 
-    st.subheader("⚠️ Clear Cache")
+    st.subheader("⚠️ Clear Messages")
 
     # clear_password_input = st.text_input(
     #     "Enter Clear Cache Password",
@@ -741,7 +741,7 @@ if st.session_state.admin_unlocked:
     #     key="clear_cache_password"
     # )
 
-    if st.button("Clear Cache"):
+    if st.button("Clear Messages"):
 
         # if clear_password_input == ADMIN_PASSWORD:
 
