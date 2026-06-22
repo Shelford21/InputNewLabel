@@ -22,6 +22,7 @@ department_factory_options = [
         "Finishing - Quty 1",
         "Sewing - Quty 2",
         "Sewing - Quty 1",
+        "Adm",
         "Lean Staff"
     ]
 line_options = [
@@ -57,6 +58,9 @@ line_options = [
     "C8",
     "C9",
     "C10",
+    "Fani",
+    "Anggih",
+    "Indah",
     "fauzan"
 ]
     
