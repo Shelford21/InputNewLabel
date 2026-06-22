@@ -58,7 +58,7 @@ line_options = [
     "C8",
     "C9",
     "C10",
-    "Fani",
+    "Fanny",
     "Anggih",
     "Indah",
     "fauzan"
